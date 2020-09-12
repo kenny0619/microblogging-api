@@ -46,7 +46,8 @@ if (isProduction) {
 } else {
   mongoose.connect(
     "mongodb+srv://ibukunoluwa:J37XqVAVWWW6T9R@cluster0.8j0zg.mongodb.net/test?retryWrites=true&w=majority",
-    { useUnifiedTopology: true }
+    { useUnifiedTopology: true },
+    { useNewUrlParser: true }
   );
   mongoose.set("debug", true);
 }
@@ -97,6 +98,10 @@ const normalizePort = () => {
   if (port >= 0) return port;
   return 3000;
 };
+
+app.get("/", (req, res) =>
+  res.status(200).send({ message: "Welcome to the beginning of nothingness" })
+);
 
 const port = normalizePort();
 const hostname = process.env.HOSTNAME || "localhost";

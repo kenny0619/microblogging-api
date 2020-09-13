@@ -42,7 +42,11 @@ if (!isProduction) {
 }
 
 if (isProduction) {
-  mongoose.connect(process.env.MONGODB_URI, { useUnifiedTopology: true });
+  mongoose.connect(
+    process.env.MONGODB_URI,
+    { useUnifiedTopology: true },
+    { useNewUrlParser: true }
+  );
 } else {
   mongoose.connect(
     "mongodb+srv://ibukunoluwa:J37XqVAVWWW6T9R@cluster0.8j0zg.mongodb.net/test?retryWrites=true&w=majority",
@@ -53,6 +57,7 @@ if (isProduction) {
 }
 
 require("./models/User");
+require("./config/passport");
 
 app.use(require("./routes"));
 
